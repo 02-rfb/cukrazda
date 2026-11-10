@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Microsoft.Win32;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -17,8 +18,16 @@ namespace cukrazda
     public partial class MainWindow : Window
     {
         public MainWindow()
-        {
+        { 
             InitializeComponent();
+
         }
+        void Megnyit_Click(object sender, RoutedEventArgs args)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.ShowDialog();
+
+        }
+
     }
 }

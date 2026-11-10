@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Menu>
+            <MenuItem Header="Fájl">
+                <MenuItem Header="megnyit" Click ="Megnyit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Sütemények" IsEnabled="False" />
+            <MenuItem Header="Névjegy" />
+        </Menu>
+        <Image HorizontalAlignment="Left" Height="255" Margin="268,62,0,0" VerticalAlignment="Top" Width="212"/>
 
     </Grid>
 </Window>
