@@ -6,24 +6,37 @@
         xmlns:local="clr-namespace:cukrazda"
         mc:Ignorable="d"
         Title="arlista" Height="450" Width="800">
-    <Grid>
-        <Button Content="rendel" HorizontalAlignment="Left" Margin="319,261,0,0" VerticalAlignment="Top" Height="95" Width="132" Click="Button_Click"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="157,71,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="157,106,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="157,141,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="157,177,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.439,5.346"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="157,205,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.528,6.376"/>
-        <Label Content="db" HorizontalAlignment="Left" Margin="599,64,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.236,-0.619"/>
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <Label Content="db" HorizontalAlignment="Left" Margin="599,99,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.188,-0.25"/>
-        <Label Content="db" HorizontalAlignment="Left" Margin="599,136,0,0" VerticalAlignment="Top"/>
-        <Label Content="db" HorizontalAlignment="Left" Margin="599,167,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.14,-0.199"/>
-        <Label Content="db" HorizontalAlignment="Left" Margin="599,196,0,0" VerticalAlignment="Top" RenderTransformOrigin="12.112,1.163"/>
-        <TextBox HorizontalAlignment="Left" Margin="474,68,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="474,103,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="474,138,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="474,171,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="474,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="ItemsGrid" Grid.Row="0" Grid.Column="0"
+              AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Sütemény" Binding="{Binding Name}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Ár" Binding="{Binding Price, StringFormat={}{0} Ft}" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Header="Rendel?" Binding="{Binding Order, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Darab" Binding="{Binding Amount}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <RichTextBox x:Name="SzamlaBox" Grid.Row="0" Grid.Column="1" Margin="10,0,0,0"
+                 IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+
+        <Button Grid.Row="1" Grid.ColumnSpan="2" Content="Rendel" Click="Rendel_Click"
+            HorizontalAlignment="Right" Width="100" Margin="0,10,0,0">
+            <Button.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Számlát kér" Click="SzamlatKer_Click"/>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
     </Grid>
 
 </Window>
